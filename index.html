@@ -831,6 +831,136 @@ section { position: relative; z-index: 1; }
 .trial-key { display: inline-block; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 13px; padding: 2px 12px; letter-spacing: 1px; margin: 0 4px; }
 
 /* ============================================================
+   DEMO VIDEO SECTION
+   ============================================================ */
+.demo-section { border-top: 1px solid var(--border-s); }
+
+.demo-inner {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Video frame — looks like a browser chrome */
+.demo-frame-wrap {
+  position: relative;
+}
+.demo-frame-chrome {
+  background: var(--card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+}
+.demo-frame-chrome::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold3), var(--gold), var(--gold2));
+}
+.demo-chrome-bar {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border-s);
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.demo-chrome-dots { display: flex; gap: 6px; }
+.demo-chrome-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.dcd1 { background: #ff5f57; }
+.dcd2 { background: #febc2e; }
+.dcd3 { background: #28c840; }
+.demo-chrome-url {
+  flex: 1; background: var(--bg3); border: 1px solid var(--border-s);
+  padding: 5px 12px; font-family: 'Outfit', sans-serif;
+  font-size: 11px; color: var(--text-d); letter-spacing: 0.3px;
+}
+.demo-chrome-badge {
+  font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 600;
+  color: var(--gold); background: var(--gold-d);
+  border: 1px solid var(--border); padding: 3px 10px; letter-spacing: 0.5px;
+}
+.demo-video-wrapper {
+  position: relative; padding-bottom: 56.25%; /* 16:9 */
+  height: 0; overflow: hidden;
+}
+.demo-video-wrapper iframe {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; border: none;
+}
+
+/* Right panel — what's in the video */
+.demo-meta { padding-top: 4px; }
+.demo-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600;
+  color: var(--gold); letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.demo-label::before {
+  content: ''; width: 24px; height: 1px;
+  background: var(--gold);
+}
+.demo-h3 {
+  font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700;
+  color: var(--white); line-height: 1.25; margin-bottom: 12px;
+}
+.demo-h3 span { color: var(--gold); }
+.demo-sub {
+  font-family: 'Outfit', sans-serif; font-size: 14px;
+  color: var(--text-m); line-height: 1.65; margin-bottom: 28px;
+}
+.demo-chapters { display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px; }
+.demo-chapter {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-s);
+  background: transparent;
+  transition: border-color .2s, background .2s;
+  cursor: default;
+}
+.demo-chapter:hover {
+  border-color: var(--border);
+  background: var(--gold-d);
+}
+.demo-chap-time {
+  font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+  color: var(--gold); min-width: 38px; padding-top: 1px;
+}
+.demo-chap-info { flex: 1; }
+.demo-chap-title {
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--text); line-height: 1.3; margin-bottom: 2px;
+}
+.demo-chap-desc {
+  font-family: 'Outfit', sans-serif; font-size: 11px;
+  color: var(--text-d); line-height: 1.5;
+}
+.demo-cta {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.demo-yt-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--text-m); text-decoration: none;
+  border: 1px solid var(--border-s); padding: 10px 16px;
+  transition: all .25s;
+}
+.demo-yt-link:hover { border-color: var(--border); color: var(--text); }
+.demo-yt-icon {
+  width: 20px; height: 20px; background: #ff0000; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.demo-yt-icon svg {
+  width: 10px; height: 10px; fill: white;
+}
+
+@media (max-width: 1024px) {
+  .demo-inner { grid-template-columns: 1fr; }
+  .demo-meta { padding-top: 0; }
+}
+
+/* ============================================================
    TRUST / TESTIMONIALS
    ============================================================ */
 .trust-section { border-top: 1px solid var(--border-s); }
@@ -990,6 +1120,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border-s); padding:
     </div>
   </a>
   <div class="nav-links">
+    <a href="#demo">Demo</a>
     <a href="#features">TDL Engine</a>
     <a href="#excel-toolkit">Excel Add-in</a>
     <a href="#reports">Reports</a>
@@ -1039,7 +1170,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border-s); padding:
       </p>
       <div class="hero-btns">
         <a href="https://wa.me/917228822882?text=Send%20me%20the%20Tally%20Scrutiny%20TDL%205-day%20trial" target="_blank" class="btn-primary">▶ Start 5-Day Free Trial</a>
-        <a href="#features" class="btn-secondary">View All 24+ Reports</a>
+        <a href="#demo" class="btn-secondary">▷ Watch Demo</a>
       </div>
     </div>
 
@@ -1184,6 +1315,96 @@ footer { background: var(--bg2); border-top: 1px solid var(--border-s); padding:
     </div>
   </div>
 </div>
+
+<!-- ═══════════════════════════════════════════════
+     DEMO VIDEO
+══════════════════════════════════════════════════ -->
+<section class="py demo-section" id="demo">
+  <div class="container">
+
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-eyebrow">LIVE DEMO</div>
+      <h2 class="section-h2">Watch It Run <span>Inside TallyPrime</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc">A complete walkthrough of the audit toolkit — from Gateway of Tally to batch export — on real company data.</p>
+    </div>
+
+    <div class="demo-inner">
+
+      <!-- VIDEO EMBED -->
+      <div class="demo-frame-wrap">
+        <div class="demo-frame-chrome">
+          <div class="demo-chrome-bar">
+            <div class="demo-chrome-dots">
+              <div class="demo-chrome-dot dcd1"></div>
+              <div class="demo-chrome-dot dcd2"></div>
+              <div class="demo-chrome-dot dcd3"></div>
+            </div>
+            <div class="demo-chrome-url">youtube.com/watch?v=nxVnPSj4kw4</div>
+            <div class="demo-chrome-badge">▶ DEMO</div>
+          </div>
+          <div class="demo-video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/nxVnPSj4kw4?rel=0&modestbranding=1&color=white"
+              title="KTS Audit Toolkit — Live Demo Inside TallyPrime"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- META / CHAPTERS -->
+      <div class="demo-meta">
+        <div class="demo-label">What you'll see</div>
+        <h3 class="demo-h3">Full Audit Workflow<br><span>in Under 10 Minutes</span></h3>
+        <p class="demo-sub">No scripted demo — real TallyPrime, real company data, real reports. See exactly what your practice will look like after installation.</p>
+
+        <div class="demo-chapters">
+          <div class="demo-chapter">
+            <div class="demo-chap-time">0:00</div>
+            <div class="demo-chap-info">
+              <div class="demo-chap-title">Installation &amp; Setup</div>
+              <div class="demo-chap-desc">Copy TDL file, load from Tally config, confirm menu appears</div>
+            </div>
+          </div>
+          <div class="demo-chapter">
+            <div class="demo-chap-time">1:30</div>
+            <div class="demo-chap-info">
+              <div class="demo-chap-title">High Risk Ledger Analysis</div>
+              <div class="demo-chap-desc">18 rules running live — loan routing and cash cycling surfaced instantly</div>
+            </div>
+          </div>
+          <div class="demo-chapter">
+            <div class="demo-chap-time">3:45</div>
+            <div class="demo-chap-info">
+              <div class="demo-chap-title">Compliance Reports</div>
+              <div class="demo-chap-desc">MSME 43B(h), 3CD Clause 31, GST flagging in one screen</div>
+            </div>
+          </div>
+          <div class="demo-chapter">
+            <div class="demo-chap-time">6:20</div>
+            <div class="demo-chap-info">
+              <div class="demo-chap-title">Batch Excel Export</div>
+              <div class="demo-chap-desc">F4 → select all → Enter — 19 .xlsx files exported at once</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-cta">
+          <a href="https://wa.me/917228822882?text=Send%20me%20the%20Tally%20Scrutiny%20TDL%205-day%20trial" target="_blank" class="btn-primary">▶ Try It Free — 5 Days</a>
+          <a href="https://youtu.be/nxVnPSj4kw4" target="_blank" class="demo-yt-link">
+            <span class="demo-yt-icon">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </span>
+            Watch on YouTube in full screen
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════════
      ENGINE MODULES
@@ -2006,6 +2227,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border-s); padding:
   <div class="ft-logo">AUDIT TOOLKIT — TDL ENGINE + EXCEL ADD-IN</div>
   <div class="ft-sub">AUDIT ENGINE · EXCEL VBA RIBBON · COMBO PACK · ANNUAL LICENSING</div>
   <div class="ft-links">
+    <a href="#demo">Demo</a>
     <a href="#features">TDL Engine</a>
     <a href="#excel-toolkit">Excel Add-in</a>
     <a href="#reports">Reports</a>
