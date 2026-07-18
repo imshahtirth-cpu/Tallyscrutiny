@@ -831,6 +831,94 @@ section { position: relative; z-index: 1; }
 .trial-key { display: inline-block; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 13px; padding: 2px 12px; letter-spacing: 1px; margin: 0 4px; }
 
 /* ============================================================
+   FREE TOOL SECTION + MODAL
+   ============================================================ */
+.free-tool-section {
+  border-top: 1px solid rgba(61,158,112,0.15);
+  border-bottom: 1px solid rgba(61,158,112,0.15);
+  background: linear-gradient(180deg, rgba(61,158,112,0.04), transparent 60%);
+}
+.free-tool-panel {
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
+  background: var(--card); border: 1px solid rgba(61,158,112,0.25);
+  padding: 44px; position: relative; overflow: hidden;
+}
+.free-tool-panel::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green2), transparent);
+}
+.ft-feat-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.ft-feat-list .badge-check { border-color: var(--green2); color: var(--green2); background: var(--green-d); }
+.ft-mock {
+  background: var(--bg2); border: 1px solid rgba(61,158,112,0.2);
+  padding: 22px; font-family: 'Outfit', sans-serif;
+}
+.ft-mock-hdr {
+  font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; color: var(--green2);
+  letter-spacing: 1px; text-align: center; border-bottom: 1px solid rgba(61,158,112,0.2);
+  padding-bottom: 12px; margin-bottom: 14px;
+}
+.ft-mock-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-m); padding: 7px 0; border-bottom: 1px solid var(--border-s); }
+.ft-mock-ok { color: var(--green2); font-weight: 700; }
+.ft-mock-verdict {
+  margin-top: 14px; text-align: center; font-family: 'Cinzel', serif; font-size: 11px;
+  font-weight: 700; color: var(--green2); background: var(--green-d);
+  border: 1px solid rgba(61,158,112,0.3); padding: 10px; letter-spacing: 0.5px;
+}
+
+/* Modal overlay */
+.ft-modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 3000;
+  background: rgba(4,8,14,0.75); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center; padding: 20px;
+}
+.ft-modal-overlay.active { display: flex; }
+.ft-modal {
+  background: var(--card); border: 1px solid rgba(61,158,112,0.3);
+  box-shadow: var(--shadow); max-width: 440px; width: 100%;
+  padding: 36px 32px; position: relative;
+}
+.ft-modal::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green2), transparent);
+}
+.ft-modal-close {
+  position: absolute; top: 14px; right: 14px;
+  background: transparent; border: 1px solid var(--border-s); color: var(--text-m);
+  width: 30px; height: 30px; cursor: pointer; font-size: 14px;
+  display: flex; align-items: center; justify-content: center; transition: all .2s;
+}
+.ft-modal-close:hover { border-color: var(--red2); color: var(--red2); }
+.ft-modal-eyebrow {
+  font-family: 'Outfit', sans-serif; font-size: 10px; color: var(--green2);
+  letter-spacing: 2px; font-weight: 700; margin-bottom: 10px;
+}
+.ft-modal-title { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.ft-modal-sub { font-family: 'Outfit', sans-serif; font-size: 13px; color: var(--text-m); line-height: 1.6; margin-bottom: 22px; }
+.ft-label {
+  display: block; font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600;
+  color: var(--text-d); letter-spacing: 0.5px; text-transform: uppercase; margin: 14px 0 6px;
+}
+.ft-input {
+  width: 100%; background: var(--bg2); border: 1px solid var(--border-s);
+  color: var(--text); font-family: 'Outfit', sans-serif; font-size: 14px;
+  padding: 12px 14px; transition: border-color .2s;
+}
+.ft-input:focus { outline: none; border-color: var(--green2); }
+.ft-error { color: var(--red2); font-family: 'Outfit', sans-serif; font-size: 12px; margin-top: 10px; min-height: 16px; }
+.ft-privacy { font-family: 'Outfit', sans-serif; font-size: 10px; color: var(--text-d); text-align: center; margin-top: 14px; line-height: 1.5; }
+.ft-success-icon {
+  width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 18px;
+  background: var(--green-d); border: 1px solid var(--green2); color: var(--green2);
+  display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 700;
+}
+.ft-manual-link { color: var(--green2); font-weight: 600; }
+
+@media (max-width: 860px) {
+  .free-tool-panel { grid-template-columns: 1fr; padding: 30px 24px; }
+}
+
+/* ============================================================
    DEMO VIDEO SECTION
    ============================================================ */
 .demo-section { border-top: 1px solid var(--border-s); }
@@ -1120,6 +1208,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border-s); padding:
     </div>
   </a>
   <div class="nav-links">
+    <a href="#free-tool" style="color:var(--green2)">Free Tool</a>
     <a href="#demo">Demo</a>
     <a href="#features">TDL Engine</a>
     <a href="#excel-toolkit">Excel Add-in</a>
@@ -1312,6 +1401,81 @@ footer { background: var(--bg2); border-top: 1px solid var(--border-s); padding:
     <div class="stat-cell">
       <div class="stat-num">8</div>
       <div class="stat-lbl">Excel VBA Ribbon Modules</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FREE TOOL — LEAD CAPTURE
+══════════════════════════════════════════════════ -->
+<section class="py free-tool-section" id="free-tool">
+  <div class="container">
+    <div class="free-tool-panel">
+      <div class="ft-left">
+        <div class="section-eyebrow" style="color:var(--green2)">100% FREE · NO CATCH</div>
+        <h2 class="section-h2">Tax Audit 5% Cash Test<br><span style="color:var(--green2)">Free TDL Tool</span></h2>
+        <p class="section-desc" style="margin:0 0 24px">
+          Checks Sec 44AB tax audit applicability straight from your Tally books — bank + cash receipts/payments,
+          the 5% cash ratio test, the ₹10 Cr turnover rule, and Net Profit %, in one report. Enter your details
+          once and the .tdl file downloads instantly.
+        </p>
+        <div class="ft-feat-list">
+          <div class="badge-row"><span class="badge-check">✓</span> Runs inside TallyPrime — no Excel needed</div>
+          <div class="badge-row"><span class="badge-check">✓</span> Auto or manual Bank/Cash ledger selection (F5)</div>
+          <div class="badge-row"><span class="badge-check">✓</span> ₹10 Cr turnover rule + Net Profit % built in</div>
+          <div class="badge-row"><span class="badge-check">✓</span> Completely free — always will be</div>
+        </div>
+        <button class="btn-primary" id="ftOpenBtn" style="background:var(--green2)">⬇ Get Free Download</button>
+      </div>
+      <div class="ft-right">
+        <div class="ft-mock">
+          <div class="ft-mock-hdr">TAX AUDIT APPLICABILITY — 5% CASH TEST</div>
+          <div class="ft-mock-row"><span>Cash Receipts / Total Receipts</span><span class="ft-mock-ok">0.04%</span></div>
+          <div class="ft-mock-row"><span>Cash Payments / Total Payments</span><span class="ft-mock-ok">0.27%</span></div>
+          <div class="ft-mock-row"><span>Net Turnover</span><span>₹5,72,94,341</span></div>
+          <div class="ft-mock-verdict">TAX AUDIT u/s 44AB : NOT APPLICABLE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FREE TOOL — MODAL (Name / Mobile / Email)
+══════════════════════════════════════════════════ -->
+<div class="ft-modal-overlay" id="ftOverlay">
+  <div class="ft-modal">
+    <button class="ft-modal-close" id="ftCloseBtn" aria-label="Close">✕</button>
+
+    <div id="ftFormView">
+      <div class="ft-modal-eyebrow">FREE DOWNLOAD</div>
+      <h3 class="ft-modal-title">Get the 5% Cash Test TDL</h3>
+      <p class="ft-modal-sub">Enter your details and the download starts immediately. No spam — just this file.</p>
+
+      <form id="ftForm">
+        <label class="ft-label" for="ftName">Full Name</label>
+        <input class="ft-input" type="text" id="ftName" name="name" placeholder="e.g. CA Rajesh Mehta" required>
+
+        <label class="ft-label" for="ftMobile">Mobile Number</label>
+        <input class="ft-input" type="tel" id="ftMobile" name="mobile" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+
+        <label class="ft-label" for="ftEmail">Email ID</label>
+        <input class="ft-input" type="email" id="ftEmail" name="email" placeholder="you@example.com" required>
+
+        <div class="ft-error" id="ftError"></div>
+
+        <button type="submit" class="btn-primary" id="ftSubmitBtn" style="width:100%; justify-content:center; margin-top:8px">
+          <span id="ftSubmitText">⬇ Download Free TDL</span>
+        </button>
+        <div class="ft-privacy">Your details are used only to send you occasional updates on new free tools. Unsubscribe anytime.</div>
+      </form>
+    </div>
+
+    <div id="ftSuccessView" style="display:none; text-align:center; padding:20px 0">
+      <div class="ft-success-icon">✓</div>
+      <h3 class="ft-modal-title">Your Download Has Started</h3>
+      <p class="ft-modal-sub">If it didn't start automatically, <a href="#" id="ftManualLink" class="ft-manual-link">click here to download</a>.</p>
+      <p class="ft-modal-sub" style="margin-top:16px">Questions on installing it in Tally? <a href="https://wa.me/917228822882?text=I%20downloaded%20the%20free%20Tax%20Audit%205%25%20Cash%20Test%20TDL%20and%20need%20help%20installing%20it" target="_blank" class="ft-manual-link">WhatsApp us</a>.</p>
     </div>
   </div>
 </div>
@@ -2320,6 +2484,115 @@ toggleBtn.addEventListener('click', () => {
     saveTheme('light');
   }
 });
+
+// ── Free Tool — Lead Capture Modal ──────────────────────────
+(function () {
+  // ============================================================
+  // ★★★ EDIT THESE TWO LINES ★★★
+  // 1. FT_SCRIPT_URL — paste your Google Apps Script Web App URL
+  //    (see setup instructions provided separately)
+  // 2. FT_FILE_URL   — paste your Google Drive direct-download
+  //    link for the .tdl file
+  // ============================================================
+  const FT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHZoPqKsAETIBC-heUlGOxJmLec5zmL0Ioxbj5sgs4jgTOKeM744QYCEgkdt4FrY-qGg/exec";
+  const FT_FILE_URL   = "https://drive.google.com/uc?export=download&id=1uzUzRGVdYVBZPko6_gY0wu59sJtgWkCw";
+  const FT_FILE_NAME  = "CASH CRITERIA 5%.tcp";
+
+  const overlay     = document.getElementById('ftOverlay');
+  const openBtn     = document.getElementById('ftOpenBtn');
+  const closeBtn    = document.getElementById('ftCloseBtn');
+  const form        = document.getElementById('ftForm');
+  const errorBox    = document.getElementById('ftError');
+  const submitBtn   = document.getElementById('ftSubmitBtn');
+  const submitText  = document.getElementById('ftSubmitText');
+  const formView    = document.getElementById('ftFormView');
+  const successView = document.getElementById('ftSuccessView');
+  const manualLink  = document.getElementById('ftManualLink');
+
+  if (!overlay) return; // section not present on this page
+
+  manualLink.href = FT_FILE_URL;
+
+  function openModal() {
+    overlay.classList.add('active');
+    formView.style.display = 'block';
+    successView.style.display = 'none';
+    errorBox.textContent = '';
+  }
+  function closeModal() { overlay.classList.remove('active'); }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  function triggerDownload() {
+    const a = document.createElement('a');
+    a.href = FT_FILE_URL;
+    a.download = FT_FILE_NAME;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errorBox.textContent = '';
+
+    const name   = document.getElementById('ftName').value.trim();
+    const mobile = document.getElementById('ftMobile').value.trim();
+    const email  = document.getElementById('ftEmail').value.trim();
+
+    if (!/^[0-9]{10}$/.test(mobile)) {
+      errorBox.textContent = 'Please enter a valid 10-digit mobile number.';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errorBox.textContent = 'Please enter a valid email address.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitText.textContent = 'Please wait…';
+
+    const payload = {
+      name: name,
+      mobile: mobile,
+      email: email,
+      tool: 'Tax Audit 5% Cash Test TDL',
+      source: window.location.href,
+      timestamp: new Date().toISOString()
+    };
+
+    // Apps Script Web Apps don't return CORS headers for fetch() to read,
+    // so we send with mode:'no-cors'. We can't inspect the response —
+    // we optimistically proceed to the download once the request is sent.
+    fetch(FT_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    })
+    .then(function () { onSubmitSuccess(); })
+    .catch(function () { onSubmitSuccess(); }); // still let them download even if logging fails
+
+    // Safety timeout in case fetch hangs on a slow network
+    setTimeout(onSubmitSuccess, 4000);
+
+    let handled = false;
+    function onSubmitSuccess() {
+      if (handled) return;
+      handled = true;
+      submitBtn.disabled = false;
+      submitText.textContent = '⬇ Download Free TDL';
+      formView.style.display = 'none';
+      successView.style.display = 'block';
+      triggerDownload();
+      form.reset();
+    }
+  });
+})();
 </script>
 </body>
 </html>
