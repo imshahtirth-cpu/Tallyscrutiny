@@ -618,6 +618,41 @@ button.chip:hover, a.chip:hover { border-color: var(--ink); }
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
 
 /* ============================================================
+   ANDROID SETUP GUIDE DOWNLOAD
+   ============================================================ */
+.dl-card {
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 44px; align-items: center;
+  border: 1px solid var(--line-strong); background: var(--card); padding: 40px; margin-top: 30px;
+}
+.dl-list { list-style: none; margin: 20px 0 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 22px; }
+.dl-list li { font-size: 14px; color: var(--ink-soft); display: flex; gap: 10px; align-items: flex-start; }
+.dl-list li::before { content: ''; width: 8px; height: 8px; background: var(--accent); margin-top: 7px; flex-shrink: 0; }
+.dl-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.dl-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-faint); margin-top: 14px; }
+
+/* Mini preview of the guide */
+.dl-prev { border: 1px solid var(--line-strong); background: #F3F5F9; overflow: hidden; box-shadow: 0 14px 34px -22px rgba(16,32,63,.55); }
+.dl-prev-hero { background: linear-gradient(125deg,#10203F 0%,#10203F 55%,#1C3468 100%); color: #F3F5F9; padding: 18px 18px 16px; }
+.dl-prev-eb { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: #F2A15C; }
+.dl-prev-h { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; line-height: 1.15; margin: 6px 0 12px; }
+.dl-prev-steps { display: flex; gap: 5px; flex-wrap: wrap; }
+.dl-prev-steps span { font-size: 10px; font-weight: 600; border: 1px solid #2E4370; border-radius: 99px; padding: 3px 9px 3px 4px; display: inline-flex; gap: 5px; align-items: center; }
+.dl-prev-steps i { font-style: normal; width: 15px; height: 15px; border-radius: 50%; background: #2E4370; display: grid; place-items: center; font-size: 8.5px; }
+.dl-prev-steps span.done i { background: #F2A15C; color: #10203F; }
+.dl-prev-body { padding: 14px; display: grid; gap: 9px; }
+.dl-prev-row { background: #fff; border: 1px solid #D9DFEA; border-radius: 10px; padding: 10px 12px; display: flex; gap: 10px; align-items: center; }
+.dl-prev-num { flex: none; width: 26px; height: 26px; border-radius: 8px; background: #10203F; color: #F3F5F9; display: grid; place-items: center; font-weight: 700; font-size: 12px; font-family: 'Space Grotesk', sans-serif; }
+.dl-prev-num.ok { background: #2E8B57; }
+.dl-prev-row b { font-family: 'Space Grotesk', sans-serif; font-size: 12.5px; display: block; }
+.dl-prev-row small { font-size: 10.5px; color: #56617A; }
+.dl-prev-cmd { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; background: #0F1B33; color: #E8EDF7; border-radius: 8px; padding: 8px 10px; display: flex; justify-content: space-between; }
+.dl-prev-cmd em { font-style: normal; color: #8E9BB5; }
+@media (max-width: 860px) {
+  .dl-card { grid-template-columns: 1fr; padding: 28px 22px; gap: 30px; }
+  .dl-list { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 footer { background: var(--ink); color: var(--paper); padding: 44px 0; text-align: center; }
@@ -652,6 +687,7 @@ footer { background: var(--ink); color: var(--paper); padding: 44px 0; text-alig
     <a href="#reports">TDL reports</a>
     <a href="#excel">Excel add-in</a>
     <a href="#install">Install guide</a>
+    <a href="#android-guide">Android guide</a>
     <a href="#videos">Videos</a>
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact</a>
@@ -1121,6 +1157,55 @@ footer { background: var(--ink); color: var(--paper); padding: 44px 0; text-alig
 </section>
 
 <!-- ============================================================
+     ANDROID SETUP GUIDE DOWNLOAD
+============================================================ -->
+<section class="hairline-bottom" id="android-guide">
+  <div class="container">
+    <div class="kicker">Free download · offline guide</div>
+    <h2>Android App Development Setup Guide</h2>
+    <p class="lede">A click-by-click guide to setting up a Windows 11 PC for Android app development with Flutter and Firebase. It's one HTML file: download it, double-click it, and it opens in any browser, even without internet.</p>
+
+    <div class="dl-card reveal reveal-up">
+      <div>
+        <ul class="dl-list">
+          <li>Seven steps, from Developer Mode to a live Firebase project</li>
+          <li>Copy button on every PowerShell command</li>
+          <li>Drawn screens for the tricky PATH step</li>
+          <li>"You should see" and "if it goes wrong" boxes</li>
+          <li>Tick-off progress tracker</li>
+          <li>Light and dark mode, works on a phone</li>
+        </ul>
+        <div class="dl-btns">
+          <a href="/downloads/android-setup-guide.html" download="Android-App-Setup-Guide.html" class="btn btn-ink">Download guide (.html) ↓</a>
+          <a href="/downloads/android-setup-guide.html" target="_blank" rel="noopener" class="btn btn-line">Open in browser</a>
+        </div>
+        <div class="dl-meta">Single HTML file · about 60 KB · Windows 11 · Flutter + Firebase · by CA Tirth Shah</div>
+      </div>
+
+      <div class="dl-prev" aria-hidden="true">
+        <div class="dl-prev-hero">
+          <div class="dl-prev-eb">Installation guide · Windows 11</div>
+          <div class="dl-prev-h">Android App Development Setup</div>
+          <div class="dl-prev-steps">
+            <span class="done"><i>1</i>Dev Mode</span>
+            <span class="done"><i>2</i>Git</span>
+            <span><i>3</i>Flutter</span>
+            <span><i>4</i>Studio</span>
+            <span><i>5</i>Node</span>
+            <span><i>6</i>Firebase</span>
+          </div>
+        </div>
+        <div class="dl-prev-body">
+          <div class="dl-prev-row"><span class="dl-prev-num ok">2</span><div><b>Install Git</b><small>Next on every screen, then Install</small></div></div>
+          <div class="dl-prev-row"><span class="dl-prev-num">3</span><div><b>Install Flutter</b><small>Clone with Git, add to PATH</small></div></div>
+          <div class="dl-prev-cmd"><span><em>PS&gt;</em> flutter --version</span><em>Copy</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      VIDEO LIBRARY
 ============================================================ -->
 <section id="videos">
@@ -1304,6 +1389,7 @@ footer { background: var(--ink); color: var(--paper); padding: 44px 0; text-alig
     <a href="#reports">TDL reports</a>
     <a href="#excel">Excel add-in</a>
     <a href="#install">Install guide</a>
+    <a href="#android-guide">Android setup guide</a>
     <a href="#videos">Videos</a>
     <a href="https://youtube.com/@ledgerscrutiny" target="_blank">YouTube</a>
     <a href="#pricing">Pricing</a>
